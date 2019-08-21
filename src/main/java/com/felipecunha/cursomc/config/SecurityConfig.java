@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	//cadastro de clientes
 	private static final String[] PUBLIC_MATCHERS_POST =
-		{"/clientes/**", "/auth/forgot/**" };
+		{"/clientes/**", "/clientes/picture", "/auth/forgot/**" };
 
 	// exige autenticação pra tudo menos o public matchers
 	@Override
