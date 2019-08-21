@@ -15,12 +15,15 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 
 @Service
 public class S3Service {
-	
+
 	private Logger LOG = LoggerFactory.getLogger(S3Service.class);
 
 	@Autowired
 	private AmazonS3 s3client;
-	
+
+	@Value("${s3.bucket}")
+	private String bucketName;
+
 	public void uploadFile(String localFilePath) {
 		try {
 			File file = new File(localFilePath);
