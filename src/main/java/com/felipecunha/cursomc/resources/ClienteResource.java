@@ -90,7 +90,7 @@ public class ClienteResource {
 	}
 	
 	@RequestMapping(value="/picture", method=RequestMethod.POST)
-	public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name="file") MultipartFile file) {
+	public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name="file") MultipartFile file) { //file é utilizado na key do postman para dar upload 
 		//pega o recurso e converte pra URI
 		URI uri = service.uploadProfilePicture(file);
 		//201 created
