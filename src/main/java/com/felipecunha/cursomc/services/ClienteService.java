@@ -48,7 +48,7 @@ public class ClienteService {
 	//classe responsável por realizar a consulta no repositório
 	//retorna um objeto do tipo categoria quando faz a procura por ID, caso não ache, retorna nulo
 	public Cliente find(Integer id) {
-		//tratamento personalizado + autenticação
+		//tratamento personalizado + autenticação (usuário logado)
 		UserSS user = UserService.authenticated();
 		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
 			throw new AuthorizationException("Acesso negado");
@@ -133,7 +133,19 @@ public class ClienteService {
 	}
 	
 	public URI uploadProfilePicture(MultipartFile multipartFile) {
-		return s3Service.uploadFile(multipartFile);
+		UserSS user = UserService.authenticated();
+		if (user == null) {
+			throw new AuthorizationException("Acesso negado");
+		}
+
+		URI uri = s3Service.uploadFile(multipartFile);
+
+		Cliente cli = find(user.getId());
+		cli.setImageUrl(uri.toString());
+		repo.save(cli);
+
+		return uri;
+		
 	}
 
 }
