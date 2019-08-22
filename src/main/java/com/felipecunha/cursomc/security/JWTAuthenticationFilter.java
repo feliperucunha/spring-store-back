@@ -62,6 +62,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String token = jwtUtil.generateToken(username);
         //gera o token no postman para autorizar
         res.addHeader("Authorization", "Bearer " + token);
+        //padronização para autorização CORS
         res.addHeader("access-control-expose-headers", "Authorization");
 	}
 

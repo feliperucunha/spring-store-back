@@ -40,6 +40,12 @@ public class ClienteResource {
 		//handler utilizado ao invés do try catch, pois é um rest
 	}
 	
+	//buscar no postman nesse formato localhost:8090/clientes/email?value=EMAILDESEJADO
+	@RequestMapping(value="/email", method=RequestMethod.GET)
+	public ResponseEntity<Cliente> find(@RequestParam(value="value") String email) {
+		Cliente obj = service.findByEmail(email);
+		return ResponseEntity.ok().body(obj);
+	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	//inserir categorias por json e convertidas para java
