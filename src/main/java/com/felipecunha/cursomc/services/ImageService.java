@@ -50,6 +50,7 @@ public class ImageService {
 	//recebe o arquivo e sua extensão e é necessário o InputStream por causa do Amazon
 	public InputStream getInputStream(BufferedImage img, String extension) {
 		try {
+			
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
 			ImageIO.write(img, extension, os);
 			return new ByteArrayInputStream(os.toByteArray());
