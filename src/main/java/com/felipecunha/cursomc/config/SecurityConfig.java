@@ -77,9 +77,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	//estas configurações liberam o acesso múltiplo
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
-	final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-	return source;
+		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS")); //como o backend já tem autorização própria, isso pôde ser adicionado
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
 	}
 	
 	@Bean
