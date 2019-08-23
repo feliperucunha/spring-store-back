@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	// dita as abas com acesso liberado para GET APENAS
 	private static final String[] PUBLIC_MATCHERS_GET =
-		{"/produtos/**", "/categorias/**" };
+		{"/produtos/**", "/categorias/**", "/estados/**" };
 	
 	//cadastro de clientes
 	private static final String[] PUBLIC_MATCHERS_POST =
