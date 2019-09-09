@@ -23,7 +23,7 @@ public class URL {
 		String[] vet = s.split(",");
 		List<Integer> list = new ArrayList<>();
 		for (int i=0; i<vet.length; i++) {
-			list .add(Integer.parseInt(vet[1]));
+			list .add(Integer.parseInt(vet[i]));
 		}
 		return list;
 		//pode também implementar com LAMBDA como no código abaixo, resolvendo em apenas uma linha
